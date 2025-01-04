@@ -16,18 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 
-Route::get("/get-all-products", [ProductController::class,"index"]);
+// Route::get("/get-all-products", [ProductController::class,"index"]);
+// Route::post("/add-product", [ProductController::class,"store"]);
 
-// Route::post("/add-product", function(){
-//     Product::create([
-//         'name' => "product 00",
-//         "price"=> 110.99,
-//         "description" => "kire mama",
-//         "slug"=> "prod00",
-//     ]);
-
-// });
-
+// single route
+Route::resource("/products", ProductController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

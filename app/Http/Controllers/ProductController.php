@@ -18,20 +18,35 @@ class ProductController extends Controller
         return $products;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // POST 
     public function store(Request $request)
     {
-        //
+        // validation
+        $request->validate([
+            'name'=> 'required',
+            "price"=> "required|numeric",
+            "slug"=> "required|unique:products,slug",
+        ]);
+
+        $product = Product::create($request->all());
+
+        return [
+            "message" => "product added successfully!",
+            "status" => "success",
+            "data" => [
+                "id" => $product->id,
+                "name" => $product->name,
+                "price" => $product->price,
+                "slug" => $product->slug,
+                "description"=> $product->description,
+                ]
+            ];
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $product = Product::find($id);
+        return $product;
     }
 
     /**
