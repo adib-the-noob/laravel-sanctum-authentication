@@ -21,6 +21,7 @@ use App\Http\Controllers\AuthController;
 // Route::post("/add-product", [ProductController::class,"store"]);
 
 Route::post("/create-user", [AuthController::class,"create_user"]);
+Route::post("/login", [AuthController::class,"login"]);
 
 // single route
 Route::middleware('auth:sanctum')->group(function () {
